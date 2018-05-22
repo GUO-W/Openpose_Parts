@@ -35,6 +35,18 @@ namespace op
         170.f,     0.f,   255.f, \
         255.f,     0.f,   255.f, \
          85.f,     0.f,   255.f
+    
+    // COCO_legs
+    #define LEGS_COCO_PAIRS_RENDER_GPU \
+        0,1,	1,2,	2,3,	0,4,	4,5,	5,6
+    #define LEGS_COCO_SCALES_RENDER_GPU 1
+    #define LEGS_COCO_COLORS_RENDER_GPU \
+         85.f,   255.f,     0.f, \
+          0.f,   255.f,     0.f, \
+          0.f,   255.f,    85.f, \
+          0.f,   255.f,   170.f, \
+          0.f,   255.f,   255.f, \
+          0.f,   170.f,   255.f
     // MPI
     // MPI colors chosen such that they are closed to COCO colors
     #define POSE_MPI_PAIRS_RENDER_GPU \

@@ -150,13 +150,13 @@ namespace op
                                             color = {255.f};
                                     if (dist2 <= minr2*0.6f)
                                     {
-                                        const auto dist3 = (x-4 - localX)
+                                       const auto dist3 = (x-4 - localX)
                                                          * (x-4 - localX) + (y - localY+4) * (y - localY+4);
                                         if (dist3 > 14.0625f) // 3.75f^2
                                             for (auto& color : colorToAdd)
                                                 color = {0.f};
-                                    }
-                                    const auto alphaColorToAdd = 0.9f;
+                                   }
+                                   const auto alphaColorToAdd = 0.9f;
                                     addColorWeighted(r, g, b, colorToAdd, alphaColorToAdd);
                                 }
                             }
