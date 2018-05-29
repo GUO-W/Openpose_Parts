@@ -6,6 +6,7 @@ namespace op
     const std::array<std::vector<float>, (int)PoseModel::Size> POSE_SCALES{
         std::vector<float>{POSE_COCO_SCALES_RENDER_GPU},          // COCO
         std::vector<float>{LEGS_COCO_SCALES_RENDER_GPU},          // COCO_legs
+	std::vector<float>{HEADSHOULDER_COCO_SCALES_RENDER_GPU},  // COCO_headshoulder
 	std::vector<float>{POSE_MPI_SCALES_RENDER_GPU},           // MPI_15
         std::vector<float>{POSE_MPI_SCALES_RENDER_GPU},           // MPI_15_4
         std::vector<float>{POSE_COCO_SCALES_RENDER_GPU},          // BODY_18
@@ -19,6 +20,7 @@ namespace op
     const std::array<std::vector<float>, (int)PoseModel::Size> POSE_COLORS{
         std::vector<float>{POSE_COCO_COLORS_RENDER_GPU},          // COCO
         std::vector<float>{LEGS_COCO_COLORS_RENDER_GPU},          // COCO_legs
+        std::vector<float>{HEADSHOULDER_COCO_COLORS_RENDER_GPU},  // COCO_headshoulder
 	std::vector<float>{POSE_MPI_COLORS_RENDER_GPU},           // MPI_15
         std::vector<float>{POSE_MPI_COLORS_RENDER_GPU},           // MPI_15_4
         std::vector<float>{POSE_COCO_COLORS_RENDER_GPU},          // BODY_18
@@ -32,6 +34,7 @@ namespace op
     const std::array<std::vector<unsigned int>, (int)PoseModel::Size> POSE_BODY_PART_PAIRS_RENDER{
         std::vector<unsigned int>{POSE_COCO_PAIRS_RENDER_GPU},          // COCO
         std::vector<unsigned int>{LEGS_COCO_PAIRS_RENDER_GPU},          // COCO_legs
+        std::vector<unsigned int>{HEADSHOULDER_COCO_PAIRS_RENDER_GPU},  // COCO_headshoulder
 	std::vector<unsigned int>{POSE_MPI_PAIRS_RENDER_GPU},           // MPI_15
         std::vector<unsigned int>{POSE_MPI_PAIRS_RENDER_GPU},           // MPI_15_4
         std::vector<unsigned int>{POSE_COCO_PAIRS_RENDER_GPU},          // BODY_18

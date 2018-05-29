@@ -54,6 +54,17 @@ namespace op
         {6, "LAnkle"},
         {7, "Background"}
     };
+    const std::map<unsigned int, std::string> POSE_COCO_HEADSHOULDER_PARTS {
+        {0,  "Nose"},
+        {1,  "Neck"},
+        {2,  "RShoulder"},
+        {3,  "LShoulder"},
+        {4, "REye"},
+        {5, "LEye"},
+        {6, "REar"},
+        {7, "LEar"},
+        {8, "Background"}
+    };
     const std::map<unsigned int, std::string> POSE_BODY_19_BODY_PARTS {
         {0,  "Nose"},
         {1,  "Neck"},
@@ -158,6 +169,10 @@ namespace op
         std::vector<unsigned int>{
             8,9, 10,11, 12,13, 14,15, 16,17, 18,19, 20,21, 22,23
         },
+	// COCO_headshoulder
+        std::vector<unsigned int>{
+            9,10, 11,12, 13,14, 15,16, 17,18, 19,20, 21,22, 23,24, 25,26
+        },
         // MPI_15
         std::vector<unsigned int>{
             16,17, 18,19, 20,21, 22,23, 24,25, 26,27, 28,29, 30,31, 32,33, 34,35, 36,37, 38,39, 40,41, 42,43
@@ -201,7 +216,7 @@ namespace op
     };
     // POSE_BODY_PART_MAPPING on HPP crashes on Windows at dynamic initialization if it's on hpp
     const std::array<std::map<unsigned int, std::string>, (int)PoseModel::Size>   POSE_BODY_PART_MAPPING{
-        POSE_COCO_BODY_PARTS,  POSE_COCO_LEGS_PARTS, POSE_MPI_BODY_PARTS,    POSE_MPI_BODY_PARTS,    POSE_COCO_BODY_PARTS,
+        POSE_COCO_BODY_PARTS,  POSE_COCO_LEGS_PARTS, POSE_COCO_HEADSHOULDER_PARTS, POSE_MPI_BODY_PARTS,    POSE_MPI_BODY_PARTS,    POSE_COCO_BODY_PARTS,
         POSE_BODY_19_BODY_PARTS,POSE_BODY_19_BODY_PARTS,POSE_BODY_23_BODY_PARTS,POSE_BODY_59_BODY_PARTS,
         POSE_BODY_19_BODY_PARTS,POSE_BODY_19_BODY_PARTS
     };
@@ -209,6 +224,7 @@ namespace op
     const std::array<std::string, (int)PoseModel::Size> POSE_PROTOTXT{
         "pose/coco/pose_deploy_linevec.prototxt",
 	"pose/coco/legs_deploy_linevec.prototxt",
+	"pose/coco/headshoulder_deploy_linevec.prototxt",
         "pose/mpi/pose_deploy_linevec.prototxt",
         "pose/mpi/pose_deploy_linevec_faster_4_stages.prototxt",
         "pose/body_18/pose_deploy.prototxt",
@@ -222,6 +238,7 @@ namespace op
     const std::array<std::string, (int)PoseModel::Size> POSE_TRAINED_MODEL{
         "pose/coco/pose_iter_440000.caffemodel",
 	"pose/coco/legs_iter_500000.caffemodel",
+	"pose/coco/headshoulder_iter_500000.caffemodel",
         "pose/mpi/pose_iter_160000.caffemodel",
         "pose/mpi/pose_iter_160000.caffemodel",
         "pose/body_18/pose_iter_XXXXXX.caffemodel",
@@ -236,7 +253,7 @@ namespace op
     // Constant Array Parameters
     // POSE_NUMBER_BODY_PARTS equivalent to size of std::map POSE_BODY_XX_BODY_PARTS - 1 (removing background)
     const std::array<unsigned int, (int)PoseModel::Size> POSE_NUMBER_BODY_PARTS{
-        18, 7, 15, 15, 18, 19, 19, 23, 59, 19, 19
+        18, 7, 8, 15, 15, 18, 19, 19, 23, 59, 19, 19
     };
     const std::array<std::vector<unsigned int>, (int)PoseModel::Size> POSE_BODY_PART_PAIRS{
         // COCO //because c++ starts from 0 but matlab starts from 1 , so a little diff from connect56Linevect.m(-1 = this file)
@@ -246,6 +263,10 @@ namespace op
 	// COCO_legs
         std::vector<unsigned int>{
 	    0,1, 1,2, 2,3, 0,4, 4,5, 5,6, 0,3, 0,6
+        },
+	// COCO_headshoulder
+        std::vector<unsigned int>{
+	    1,2, 2,6, 1,3, 3,7, 1,0, 0,4, 0,5, 4,6, 5,7
         },
         // MPI_15
         std::vector<unsigned int>{POSE_MPI_PAIRS_RENDER_GPU},
@@ -285,6 +306,7 @@ namespace op
     const std::array<unsigned int, (int)PoseModel::Size> POSE_MAX_PEAKS{
         POSE_MAX_PEOPLE,    // COCO
 	POSE_MAX_PEOPLE,    // COCO_legs
+	POSE_MAX_PEOPLE,    // COCO_headshoulder
         POSE_MAX_PEOPLE,    // MPI_15
         POSE_MAX_PEOPLE,    // MPI_15_4
         POSE_MAX_PEOPLE,    // BODY_18
@@ -298,6 +320,7 @@ namespace op
     const std::array<float, (int)PoseModel::Size> POSE_CCN_DECREASE_FACTOR{
         8.f,    // COCO
 	8.f,    // COCO_legs
+	8.f,    // COCO_headshoulder
         8.f,    // MPI_15
         8.f,    // MPI_15_4
         8.f,    // BODY_18
@@ -312,20 +335,20 @@ namespace op
     // Default Model Parameters
     // They might be modified on running time
     const std::array<float, (int)PoseModel::Size>           POSE_DEFAULT_NMS_THRESHOLD{
-        0.05f,  0.05f,     0.6f,       0.3f,       0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f
+        0.05f,  0.05f,   0.05f,   0.6f,       0.3f,       0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f
     };
     const std::array<float, (int)PoseModel::Size>    POSE_DEFAULT_CONNECT_INTER_MIN_ABOVE_THRESHOLD{
-        0.95f,  0.95f,     0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f
+        0.95f,  0.95f,  0.95f,    0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f,      0.95f
         // 0.85f,      0.85f,      0.85f,      0.85f,      0.85f,      0.85f // Matlab version
     };
     const std::array<float, (int)PoseModel::Size>           POSE_DEFAULT_CONNECT_INTER_THRESHOLD{
-        0.05f,  0.05f,      0.01f,      0.01f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f
+        0.05f,  0.05f,  0.05f,     0.01f,      0.01f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f,      0.05f
     };
     const std::array<unsigned int, (int)PoseModel::Size>    POSE_DEFAULT_CONNECT_MIN_SUBSET_CNT{
-        3,     3,       3,          3,          3,          3,          3,          3,          3,          3,          3
+        3,     3,    3,    3,          3,          3,          3,          3,          3,          3,          3,          3
     };
     const std::array<float, (int)PoseModel::Size>           POSE_DEFAULT_CONNECT_MIN_SUBSET_SCORE{
-        0.4f,   0.4f,     0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f
+        0.4f,   0.4f,  0.4f,     0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f
         // 0.2f,       0.4f,       0.4f,       0.4f,       0.4f,       0.4f // Matlab version
     };
 

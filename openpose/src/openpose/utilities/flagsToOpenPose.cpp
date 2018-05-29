@@ -18,6 +18,8 @@ namespace op
                 return PoseModel::COCO_18;
 	    else if (poseModeString == "COCO_legs")
                 return PoseModel::COCO_legs;
+	    else if (poseModeString == "COCO_headshoulder")
+                return PoseModel::COCO_headshoulder;
             else if (poseModeString == "MPI")
                 return PoseModel::MPI_15;
             else if (poseModeString == "MPI_4_layers")
@@ -37,7 +39,7 @@ namespace op
             else if (poseModeString == "BODY_59")
                 return PoseModel::BODY_59;
             // else
-            error("String does not correspond to any model (COCO, COCO_legs, MPI, MPI_4_layers)",
+            error("String does not correspond to any model (COCO, COCO_legs,COCO_headshoulder, MPI, MPI_4_layers)",
                   __LINE__, __FUNCTION__, __FILE__);
             return PoseModel::COCO_18;
         }

@@ -47,6 +47,18 @@ namespace op
           0.f,   255.f,   170.f, \
           0.f,   255.f,   255.f, \
           0.f,   170.f,   255.f
+    // COCO_headshoulder
+    #define HEADSHOULDER_COCO_PAIRS_RENDER_GPU \
+	1,2,  1,3, 1,0, 0,4, 0,5, 4,6, 5,7
+    #define HEADSHOULDER_COCO_SCALES_RENDER_GPU 1
+    #define HEADSHOULDER_COCO_COLORS_RENDER_GPU \
+         85.f,   255.f,     0.f, \
+          0.f,   255.f,     0.f, \
+          0.f,   255.f,    85.f, \
+          0.f,   255.f,   170.f, \
+          0.f,   255.f,   255.f, \
+          0.f,   170.f,   255.f, \
+         85.f,     0.f,   255.f
     // MPI
     // MPI colors chosen such that they are closed to COCO colors
     #define POSE_MPI_PAIRS_RENDER_GPU \

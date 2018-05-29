@@ -10,6 +10,7 @@ namespace op
     {
         COCO_18 = 0,    /**< COCO model, with 18+1 components (see poseParameters.hpp for details). */
         COCO_legs,	/**< COCO_legs model, with 7+1 components (see poseParameters.hpp for details). */
+	COCO_headshoulder,/**< COCO_headshoulder model, with 8+1 components (see poseParameters.hpp for details). */
 	MPI_15,         /**< MPI model, with 15+1 components (see poseParameters.hpp for details). */
         MPI_15_4,       /**< Variation of the MPI model, reduced number of CNN stages to 4: faster but less accurate.*/
         BODY_18,        /**< Experimental. Do not use. */
